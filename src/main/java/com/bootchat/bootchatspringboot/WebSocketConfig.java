@@ -12,12 +12,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").withSockJS();
+        registry.addEndpoint("/ws").withSockJS(); // cái này để SockJS gọi đến
     }
 
     @Override
-    public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.setApplicationDestinationPrefixes("/app");
-        registry.enableSimpleBroker("/topic");
+    public void configureMessageBroker(MessageBrokerRegistry registry) { //config cho message broker
+        registry.setApplicationDestinationPrefixes("/app"); // đặt tiền tố gửi từ client lên server
+        registry.enableSimpleBroker("/topic"); // đặt tiền tố gửi lại các messages từ server về client
     }
 }
