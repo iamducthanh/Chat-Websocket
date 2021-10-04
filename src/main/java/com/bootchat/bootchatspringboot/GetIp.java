@@ -17,6 +17,7 @@ public class GetIp {
 
     @GetMapping("/get-ip")
     @ResponseBody
+    @CrossOrigin(origins = "http://localhost:8080")
     public String getIp(Model model) throws UnknownHostException {
         String ip = request.getHeader("X-Forwarded-For");
         if (ip == null || ip.length() == 0 || ip.equalsIgnoreCase("unknown")) {
