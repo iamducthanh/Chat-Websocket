@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.Inet4Address;
@@ -15,6 +16,7 @@ public class GetIp {
     HttpServletRequest request;
 
     @GetMapping("/get-ip")
+    @ResponseBody
     public String getIp(Model model) throws UnknownHostException {
         String ip = request.getHeader("X-Forwarded-For");
         if (ip == null || ip.length() == 0 || ip.equalsIgnoreCase("unknown")) {
@@ -51,7 +53,6 @@ public class GetIp {
             ip = request.getRemoteAddr();
         }
         model.addAttribute("ip", ip);
-        return "ip";
+        return ip;
     }
 }
-
