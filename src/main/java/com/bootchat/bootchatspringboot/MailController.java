@@ -3,10 +3,6 @@ package com.bootchat.bootchatspringboot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-
-
 
 import javax.mail.MessagingException;
 
@@ -15,11 +11,17 @@ public class MailController {
     @Autowired
     private MailerUtil mailerUtil;
 
-    @PostMapping("/mail/send")
+    @GetMapping("/mail/send")
+    @CrossOrigin("*")
     @ResponseBody
-    @CrossOrigin(origins = "http://localhost:8080")
-    public String sendMail(@RequestBody MailPojo mailPojo) {
+    public String sendMail(
+            @RequestParam("from") String from,
+            @RequestParam("to") String to,
+            @RequestParam("subject") String subject,
+            @RequestParam("body") String body
+    ) {
         try{
+            MailPojo mailPojo = new MailPojo(from, to, subject, body);
             mailerUtil.send(mailPojo);
         } catch (Exception e){
             return "Lỗi cmnr!";
