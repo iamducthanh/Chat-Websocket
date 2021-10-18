@@ -13,7 +13,7 @@ public class MailController {
 
     @GetMapping("/get-ip")
     @ResponseBody
-    @CrossOrigin
+    @CrossOrigin("*")
     public String sendMail(@RequestBody MailPojo mailPojo) {
         try{
             mailerUtil.send(mailPojo);
