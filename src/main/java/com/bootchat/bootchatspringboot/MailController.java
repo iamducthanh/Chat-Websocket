@@ -24,7 +24,7 @@ public class MailController {
             MailPojo mailPojo = new MailPojo(from, to, subject, body);
             mailerUtil.send(mailPojo);
         } catch (Exception e){
-            return "Lỗi cmnr!";
+            return e.getMessage();
         }
         return "Gửi thành công";
     }
