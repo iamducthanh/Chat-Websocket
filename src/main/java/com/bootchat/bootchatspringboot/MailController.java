@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 
 import javax.mail.MessagingException;
@@ -13,7 +15,7 @@ public class MailController {
     @Autowired
     private MailerUtil mailerUtil;
 
-    @GetMapping("/get-ip")
+    @PostMapping("/mail/send")
     @ResponseBody
     @CrossOrigin(origins = "http://localhost:8080")
     public String sendMail(@RequestBody MailPojo mailPojo) {
