@@ -2,20 +2,18 @@ package com.bootchat.bootchatspringboot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 
-@RestController
+@Controller
 public class MailController {
     @Autowired
     private MailerUtil mailerUtil;
 
-    @PostMapping("/mail/send")
-    @CrossOrigin("*")
+    @GetMapping("/get-ip")
+    @ResponseBody
+    @CrossOrigin
     public String sendMail(@RequestBody MailPojo mailPojo) {
         try{
             mailerUtil.send(mailPojo);
