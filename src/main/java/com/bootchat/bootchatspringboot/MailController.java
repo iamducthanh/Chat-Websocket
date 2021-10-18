@@ -13,7 +13,6 @@ public class MailController {
 
     @GetMapping("/get-ip")
     @ResponseBody
-    @CrossOrigin("http://localhost:8080/**")
     public String sendMail(@RequestBody MailPojo mailPojo) {
         try{
             mailerUtil.send(mailPojo);
