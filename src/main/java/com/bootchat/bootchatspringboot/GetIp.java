@@ -17,6 +17,7 @@ public class GetIp {
     HttpServletRequest request;
 
     @GetMapping("/get-ip")
+        @CrossOrigin("*")
     @ResponseBody
     public String getIp(Model model) throws UnknownHostException {
         String ip = request.getHeader("X-Forwarded-For");
